@@ -1,6 +1,4 @@
-# hollow-function-documentation
-
-**Pattern Name:** Hollow Function
+# Hollow Functions
 
 **Description:**
 
@@ -8,13 +6,13 @@ The Hollow Function pattern represents a method of integrating external AI servi
 
 **Key Characteristics:**
 
-1. **Abstraction of API Details:** The hollow function hides the intricacies of the API call (such as request formation, parameter specification, and response handling) from the rest of the application. This encapsulation simplifies the use of AI services by exposing a straightforward, function-like interface.
+- **Abstraction of API Details:** The hollow function hides the intricacies of the API call (such as request formation, parameter specification, and response handling) from the rest of the application. This encapsulation simplifies the use of AI services by exposing a straightforward, function-like interface.
 
-2. **Delegated Processing:** The core logic or computation is not performed within the function itself. Instead, the function delegates this task to an external AI model via an API call. The response from the AI model is then processed, formatted, or transformed as needed to fit the function's intended output.
+- **Delegated Processing:** The core logic or computation is not performed within the function itself. Instead, the function delegates this task to an external AI model via an API call. The response from the AI model is then processed, formatted, or transformed as needed to fit the function's intended output.
 
-3. **Response Transformation:** The hollow function may include logic to parse and convert the AI model's response into a more usable format (e.g., converting JSON strings into JavaScript objects).
+- **Response Transformation:** The hollow function may include logic to parse and convert the AI model's response into a more usable format (e.g., converting JSON strings into JavaScript objects).
 
-4. **Integration of AI as a Service (AIaaS):** This pattern is indicative of the broader trend of integrating cloud-based AI capabilities into software solutions. It reflects a modular approach to software design, where AI services are treated as interchangeable components.
+- **Integration of AI as a Service (AIaaS):** This pattern is indicative of the broader trend of integrating cloud-based AI capabilities into software solutions. It reflects a modular approach to software design, where AI services are treated as interchangeable components.
 
 **Usage Scenario:**
 
@@ -42,9 +40,12 @@ const openai = new OpenAI({
 async function isWordInSentence(word, sentence) {
     const prompt = 
         `Determine if the word '${word}' is in the following sentence and respond in JSON format: \n` +
+        `Your response must be in the following format: \n` +
+        `{ "wordInSentence": "true"/"false" }` +
         `Sentence: "${sentence}"`;
 
     try {
+        // Call the OpenAI API
         const response = await openai.createCompletion({
             model: "gpt-3.5-turbo", 
             prompt: prompt,
@@ -75,15 +76,23 @@ async function isWordInSentence(word, sentence) {
 
 **Advantages:**
 
-- Simplifies Complex Tasks: Enables the execution of complex or fuzzy logic tasks (like synonym detection, sentiment analysis, etc.) that are challenging to implement with traditional programming techniques.
-- Efficient Data Translation: Facilitates quick and efficient 'data translation' tasks, such as converting or interpreting data formats, without the need for extensive local application logic.
-- Reduces Development Time: By delegating advanced tasks to an AI model, developers can significantly cut down on development and debugging time, focusing instead on other critical aspects of their application.
-- Scalability and Flexibility: AI models, especially those hosted as services, can handle a wide range of tasks and scale according to demand, offering flexibility that might be hard to achieve with in-app logic.
-- Access to Advanced AI Capabilities: Provides a straightforward path to integrate cutting-edge AI capabilities into applications, without requiring deep expertise in AI and machine learning.
-- Abstraction of Complexity: Abstracts the complexity of AI interactions, presenting them through a familiar and simple function interface.
-- Dynamic Content Processing: Offers a powerful tool for tasks involving dynamic content processing, like natural language understanding, which are inherently suited for AI models.
-- Cost-Effective Solution: Potentially more cost-effective than developing and maintaining complex algorithms for specific tasks, especially for small or medium-sized projects.
-- Continuous Improvement: Benefits from the continuous improvement and updates of the underlying AI models, ensuring that the application stays at the cutting edge without additional development effort.
+- **Simplifies Complex Tasks:** Enables the execution of complex or fuzzy logic tasks (like synonym detection, sentiment analysis, etc.) that are challenging to implement with traditional programming techniques.
+
+- **Efficient Data Translation:** Facilitates quick and efficient 'data translation' tasks, such as converting or interpreting data formats, without the need for extensive local application logic.
+
+- **Reduces Development Time:** By delegating advanced tasks to an AI model, developers can significantly cut down on development and debugging time, focusing instead on other critical aspects of their application.
+
+- **Scalability and Flexibility:** AI models, especially those hosted as services, can handle a wide range of tasks and scale according to demand, offering flexibility that might be hard to achieve with in-app logic.
+
+- **Access to Advanced AI Capabilities:** Provides a straightforward path to integrate cutting-edge AI capabilities into applications, without requiring deep expertise in AI and machine learning.
+
+- **Abstraction of Complexity:** Abstracts the complexity of AI interactions, presenting them through a familiar and simple function interface.
+
+- **Dynamic Content Processing:** Offers a powerful tool for tasks involving dynamic content processing, like natural language understanding, which are inherently suited for AI models.
+
+- **Cost-Effective Solution:** Potentially more cost-effective than developing and maintaining complex algorithms for specific tasks, especially for small or medium-sized projects.
+
+- **Continuous Improvement:** Benefits from the continuous improvement and updates of the underlying AI models, ensuring that the application stays at the cutting edge without additional development effort.
 
 **Considerations:**
 
