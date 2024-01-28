@@ -41,7 +41,7 @@ async function isWordInSentence(word, sentence) {
     const prompt = 
         `Determine if the word '${word}' is in the following sentence and respond in JSON format: \n` +
         `Your response must be in the following format: \n` +
-        `{ "wordInSentence": "true"/"false" }` +
+        `{ "wordInSentence": true/false }` +
         `Sentence: "${sentence}"`;
 
     try {
